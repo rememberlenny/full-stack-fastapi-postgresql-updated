@@ -29,7 +29,7 @@ async def test_create_item(
 async def test_read_item(
     client: AsyncClient, superuser_token_headers: dict, async_get_db: AsyncSession
 ) -> None:
-    item = await create_random_item(db)
+    item = await create_random_item(async_get_db)
     response = await client.get(
         f"{settings.API_V1_STR}/items/{item.id}", headers=superuser_token_headers,
     )

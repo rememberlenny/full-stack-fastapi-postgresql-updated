@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import crud
 from app.core.config import settings
-from app.schemas.user import UserCreate
+from app.users.schemas import UserCreate
 from app.tests.utils.utils import random_email, random_lower_string
 
 pytestmark = pytest.mark.asyncio

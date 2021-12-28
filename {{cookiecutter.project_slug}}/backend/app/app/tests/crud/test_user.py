@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import crud
 from app.core.security import verify_password
-from app.schemas.user import UserCreate, UserUpdate
+from app.users.schemas import UserCreate, UserUpdate
 from app.tests.utils.utils import random_email, random_lower_string
 
 
@@ -49,7 +49,7 @@ async def test_check_if_user_is_inactive(async_get_db: AsyncSession) -> None:
 async def test_check_if_user_is_active_inactive(async_get_db: AsyncSession) -> None:
     email = random_email()
     password = random_lower_string()
-    user_in = UserCreate(email=email, password=password, disabled=True)
+    user_in = UserCreate(email=email, password=password, is_active=True)
     user = await crud.user.create(async_get_db, obj_in=user_in)
     is_active = crud.user.is_active(user)
     assert is_active
